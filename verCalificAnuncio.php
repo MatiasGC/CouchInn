@@ -38,7 +38,9 @@
 							<div class='rateit' data-rateit-value='".$serv->levantarPuntajePromedioAnuncio($idAnun)."' data-rateit-readonly='true' data-rateit-step='0.1' data-rateit-resetable='false'  data-rateit-ispreset='true'></div>
 					";
 					while ($rowComent = $calif->fetch_assoc()){
-						$serv->marcarLeidaCalif($rowComent['calificacion_ID']);
+						if ($_SESSION['id']==$row['ID_usuario']){
+							$serv->marcarLeidaCalif($rowComent['calificacion_ID']);
+						}
 						$usuarioQueCalifico = $serv->levantarUsuarioCalificador($rowComent['ID_calificacion_visitante']);
 						$rowUsCal = $usuarioQueCalifico->fetch_assoc();
 						$fechainicio=date('d/m/Y', strtotime($rowComent['fecha_inicio']));
@@ -77,8 +79,29 @@
 							</div>
 					";	
 				}
+					echo "
+					<form action='anuncDetalle.php' method='POST' enctype='multipart/form-data'>
+					<input class=hidden name='anunc' value='".$idAnun."'>
+					<center><button type='submit' class='btn22'>Volver</button></center>
+				</form>";
 			?>
 		</div>
 	</center>
+	<?php 
+		if(!isset($_POST['loaded'])){
+			echo "	
+				<form id='back' action='verCalificAnuncio.php' method='POST' enctype='multipart/form-data'>
+					<input class='hidden' name='loaded' value='true'>	
+					<input class='hidden' name='anunc' value=".$idAnun.">	
+				</form>
+				<script type='text/javascript'>
+					function submitForm() {
+						document.getElementById('back').submit();
+					}
+					window.onload = submitForm;
+				</script>
+			";
+		}
+	?>
 </body>
 </html>

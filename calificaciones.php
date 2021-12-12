@@ -13,15 +13,15 @@
 	<script type="text/javascript">
 		function showRec(){
 			document.getElementById('recibidas').style.display = 'inline';
-			$("#rec").addClass("selected");
+			$("#rec2").addClass("selected");
 			document.getElementById('enviadas').style.display = 'none';
-			$("#env").removeClass("selected");		
+			$("#env2").removeClass("selected");			
 		}
 		function showEnv(){
 			document.getElementById('enviadas').style.display = 'inline';
-			$("#env").addClass("selected");
+			$("#env2").addClass("selected");
 			document.getElementById('recibidas').style.display = 'none';
-			$("#rec").removeClass("selected");				
+			$("#rec2").removeClass("selected");			
 		}
 	</script>
 </head>
@@ -52,6 +52,24 @@
 					</script>
 				";
 			}
+			if ($tipo=='nrecibidas'){
+				echo "
+					<script type='text/javascript'>
+						window.onload = function mostrarR(){
+							document.getElementById('rec2').click();
+						}	
+					</script>
+				";
+			}
+			if ($tipo=='nenviadas'){
+				echo "
+					<script type='text/javascript'>
+						window.onload = function mostrarE(){
+							document.getElementById('env2').click();
+						}	
+					</script>
+				";
+			}
 			$serv = new aService();
 			$id=$_SESSION['id'];
 			$service = new cabecera($_SESSION['usuario']);
@@ -66,17 +84,26 @@
 				</div>
 				<div class='col-xs-2 col-md-2'>
 					<div class='centered'>
-						<button type=button id='env' class='btn2' onclick='showEnv();'>Calificaciones de hospedaje</button>
+						<form action='calificaciones.php' method='POST' enctype='multipart/form-data'>
+							<input class=hidden name='tipo' value='enviadas'>
+							<button type='submit' id='env2' class='btn2'>Calificaciones de hospedaje</button>
+						</form>
+						<button type=button id='env' class='hidden' onclick='showEnv();'>
 					</div>
 				</div>
 				<div class='col-xs-2 col-md-2'>
 					<div class='centered'>
-						<button type=button id='rec' onclick='showRec();' class='btn2'>Calificaciones como huésped</button>
+						<form action='calificaciones.php' method='POST' enctype='multipart/form-data'>
+							<input class=hidden name='tipo' value='recibidas'>
+							<button type='submit' id='rec2' class='btn2'>Calificaciones como huésped</button>
+						</form>
+						<button type=button id='rec' class='hidden' onclick='showRec();'>
 					</div>
 				</div>
 				<div class='col-xs-4 col-md-4'>
 				</div>
 			</div>
+			<center>
 			<br>
 		";
 		$userCalif=$serv->levantarCalificacionesUsuario($id);

@@ -35,21 +35,19 @@
 			if(isset($_POST['tipo'])){
 				if ($_POST['tipo']=='recibidas'){
 					$serv->marcarLeidasPregRec($id);
-				echo "
-					<script type='text/javascript'>
-						window.onload = function mostrarR(){
-							console.log('hola');
-							document.getElementById('rec').click();
-						}	
-					</script>
-				";
+					echo "
+						<script type='text/javascript'>
+							window.onload = function mostrarR(){
+								document.getElementById('rec').click();
+							}	
+						</script>
+					";
 				}
 				if ($_POST['tipo']=='enviadas'){
 					$serv->marcarLeidasPregEnv($id);
 					echo "
 						<script type='text/javascript'>
 							window.onload = function mostrarE(){
-								console.log('hola');
 								document.getElementById('env').click();
 							}	
 						</script>

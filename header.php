@@ -121,7 +121,7 @@
 												}
 												while ($row11=$resCancA->fetch_assoc()){
 													echo "	<form action='reservaDetalle.php' method='POST' enctype='multipart/form-data'>
-																<input class='hidden' name='idsol' value='".$row11['solicitud_ID']."'>
+																<input class='hidden' name='idsol' value='".$row11['ID']."'>
 																<input class='hidden' name='tipo' value='enviadas'>
 																<button type='submit' class='btn222'>Una reserva fue cancelada</button>
 															</form>
@@ -129,16 +129,16 @@
 												}
 												while ($row5=$califAnunc->fetch_assoc()){
 													echo "
-														<form action='verCalificAnuncio.php' method='POST' enctype='multipart/form-data'>
-															<input class='hidden' name='anunc' value='".$row5['anuncio_ID']."'>
+														<form action='calificaciones.php' method='POST' enctype='multipart/form-data'>
+															<input class=hidden name='tipo' value='nenviadas'></input>
 															<button type='submit' class='btn222'>Un anuncio recibió una nueva calificación</button>
 														</form>
 													";
 												}
 												while ($row6=$califUser->fetch_assoc()){
 													echo "	
-														<form action='verCalificUsuario.php' method='POST' enctype='multipart/form-data'>
-															<input class=hidden name='solicUser' value='".$_SESSION['ID']."'></input>
+														<form action='calificaciones.php' method='POST' enctype='multipart/form-data'>
+															<input class=hidden name='tipo' value='nrecibidas'></input>
 															<button type='submit' class='btn222'>Recibió una nueva calificación como huésped</button>
 														</form>
 													";

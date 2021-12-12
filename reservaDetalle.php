@@ -74,7 +74,7 @@
 									</div>
 									<div class='col-xs-2 col-md-2'>
 										<form action='verDatos.php' method='POST' enctype='multipart/form-data'>
-											<input class=hidden name='user' value='".$host_row['ID_usuario']."'></input>
+											<input class=hidden name='user' value='".$host_row['ID']."'></input>
 											<center><button type='submit' class='btn22'>Ver datos del usuario</button></center>
 										</form>
 									</div>

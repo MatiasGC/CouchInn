@@ -467,8 +467,7 @@
 			$conec->conectar();
 			$consulta = "SELECT * 	FROM solicitud_reserva
 									WHERE solicitud_reserva.ID_usuario=$id
-									AND solicitud_reserva.Visto_huesped=0 
-									AND solicitud_reserva.ID NOT IN (SELECT ID_solicitud FROM reserva)";
+									AND solicitud_reserva.Visto_huesped=0";
 			$resultSQL = $conec->ejecutarSQL($consulta);
 			return $resultSQL;
 		}
@@ -477,7 +476,7 @@
 			$conec->conectar();
 			$consulta = "SELECT * 	FROM solicitud_reserva
 									WHERE solicitud_reserva.ID_usuario=$id
-									AND solicitud_reserva.Visto_huesped=0
+									AND solicitud_reserva.Visto_autor=0
 									AND solicitud_reserva.ID IN (SELECT ID_solicitud FROM reserva)";
 			$resultSQL = $conec->ejecutarSQL($consulta);
 			return $resultSQL;

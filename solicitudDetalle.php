@@ -104,6 +104,7 @@
 									<div class='col-xs-2 col-md-2'>
 										<form action='verCalificUsuario.php' method='POST' enctype='multipart/form-data'>
 											<input class=hidden name='solicUser' value='".$row['ID_usuario']."'></input>
+											<input class=hidden name='retsol' value='".$row['ID']."'></input>
 											<button type='submit' class='btn22'>Ver calificación ".$user_row['Username']."</button>
 										</form>
 									</div>
